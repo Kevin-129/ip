@@ -77,10 +77,10 @@ public class CowPay {
             
                 if (next.equals("mark")) {
                     t.markAsDone();
-                    System.out.println("\tOk this one marked as done: ");
+                    System.out.println("\tOk, this one marked as done: ");
                 } else {
                     t.markAsNotDone();
-                    System.out.println("\tOk this one marked as not done: ");                
+                    System.out.println("\tOk, this one marked as not done: ");                
                 }
                 System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
                 
@@ -109,7 +109,7 @@ public class CowPay {
 
                 Event e = new Event(description, from, to);
                 tasks.add(e);
-                System.out.println("\tOk you need to: ");
+                System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [E][ ] " + description + e.getFromAndTo());
 
                 System.out.println("\tYou have " + tasks.size() + " tasks.");
@@ -135,7 +135,7 @@ public class CowPay {
                 
                 Deadline d = new Deadline(description, by);
                 tasks.add(d);
-                System.out.println("\tOk you need to: ");
+                System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [D][ ] " + description + d.getBy());
 
                 System.out.println("\tYou have " + tasks.size() + " tasks.");
@@ -151,15 +151,56 @@ public class CowPay {
                     String description = inputStrings[1];
                     Task t = new Task(description);
                     tasks.add(t);
-                    System.out.println("\tOk you need to: ");
+                    System.out.println("\tOk, you need to: ");
                     System.out.println("\t  [T][ ] " + description);
 
                     System.out.println("\tYou have " + tasks.size() + " tasks.");
                 }
 
+            } else if (next.equals("delete")) {
+
+                //Delete task
+                Task t;
+                try {
+                    //HANDLE EMPTY LIST, INVALID NUMBERS,  OOB
+                    if (tasks.size() < 1) {
+                        System.out.println("\tNo tasks! Stop skiving!");
+                        System.out.println(LINE);
+                        continue;
+                    }
+                    int taskNum = Integer.parseInt(inputStrings[1]) - 1;
+                    t = tasks.get(taskNum);
+                } catch (Exception e) {
+                    System.out.println("\tGive a valid task number! 1 to " + tasks.size());
+                    System.out.println(LINE);
+                    continue;
+                }
+            
+                String time = "";
+
+                System.out.println("\tOk, I remove this task: ");
+                if (t instanceof Event) {
+                    Event e = (Event) t;
+                    System.out.print("\t  [E]");
+                    time = e.getFromAndTo();
+
+                } else if (t instanceof Deadline) {
+                    Deadline d = (Deadline) t;
+                    System.out.print("\t  [D]");
+                    time = d.getBy();
+                } else {
+                    System.out.print("\t  [T]");
+                }
+                System.out.print(t.getStatusIcon() + " ");
+                System.out.println(t.getDescription() + time);
+                System.out.println("\tYou have " + tasks.size() + " tasks.");
+
+                tasks.remove(t);
+                
             } else {
                 System.out.println("\t" + "WYD?? Try a valid command!");
-                System.out.println("\tCommands: todo, deadline, event, list, mark, unmark, bye");
+                System.out.println("\tCommands: todo, deadline, event, ");
+                System.out.println("\t          list, mark, unmark, delete, bye");
             }
 
             System.out.println(LINE);

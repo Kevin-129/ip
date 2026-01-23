@@ -1,10 +1,15 @@
 list
 shut up
+mark-1
 mark 1
+delete1
+delete-1
+delete 1
 todo
 todo touch grass
 list
 mark 1
+list
 deadline
 deadline fly kite 
 deadline fly kite by
@@ -17,6 +22,7 @@ deadline fly kite /by TONIGHT
 unmark1
 unmark one
 unmark 1
+list
 mark3
 mark 3
 mark2
@@ -36,5 +42,11 @@ unmark 2
 mark 3
 list
 unmark 3
+list
+delete 2
+list
+delete 1
+list
+delete 3
 list
 bye
