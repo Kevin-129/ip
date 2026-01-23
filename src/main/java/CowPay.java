@@ -57,42 +57,34 @@ public class CowPay {
                 }
 
             } else if (next.equals("mark") || next.equals("unmark")) {
+               
                 //Mark or unmark task
-                if (inputStrings.length < 2) {
-                    //Check if valid task number is given
-                    System.out.println("\tGive a valid task number.");
+                Task t;
+                try {
+                    //HANDLE EMPTY LIST, INVALID NUMBERS,  OOB
+                    if (tasks.size() < 1) {
+                        System.out.println("\tNo tasks! Stop skiving!");
+                        System.out.println(LINE);
+                        continue;
+                    }
+                    int taskNum = Integer.parseInt(inputStrings[1]) - 1;
+                    t = tasks.get(taskNum);
+                } catch (Exception e) {
+                    System.out.println("\tGive a valid task number! 1 to " + tasks.size());
+                    System.out.println(LINE);
                     continue;
-
-                } else {
-                    //Check if integer is given
-                    int taskNum;
-                    try {
-                        taskNum = Integer.parseInt(inputStrings[1]) - 1;
-                    } catch (NumberFormatException e) {
-                        System.out.println("\tGive a valid task number.");
-                        continue;
-                    }
-                    //ArrayList boundary check
-                    if (taskNum < 0 || taskNum >= tasks.size()) {
-                        System.out.println("\tGive a valid task number.");
-                        continue;
-
-                    } else {
-                        Task t = tasks.get(taskNum);
-                        if (next.equals("mark")) {
-                            t.markAsDone();
-                            System.out.println("\tOk this one marked as done: ");
-                            System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
-                            
-                        } else {
-                            t.markAsNotDone();
-                            System.out.println("\tOk this one marked as not done: ");
-                            System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
-                        }
-                    }
-                    
                 }
+            
+                if (next.equals("mark")) {
+                    t.markAsDone();
+                    System.out.println("\tOk this one marked as done: ");
+                } else {
+                    t.markAsNotDone();
+                    System.out.println("\tOk this one marked as not done: ");                
+                }
+                System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
                 
+
             } else if (next.equals("event")) {
                 //Event task
                 String description;
@@ -101,6 +93,7 @@ public class CowPay {
 
                 //Second part of input split into further parts
                 try {
+                    //HANDLE MISSING PARAMS, INVALID FORMAT
                     String[] split1 = inputStrings[1].trim().split(" /from ", 2);
                     String[] split2 = split1[1].trim().split(" /to ", 2);
                     description = split1[0];
@@ -109,6 +102,8 @@ public class CowPay {
                 } catch (Exception e) {
                     System.out.println("\tAn event has a description, /from and /to.");
                     System.out.println("\tE.g. Enter: event project meeting /from Mon 2pm /to 4pm");
+                    System.out.println("\tUse the exact format! - \"/from\" and \"/to\"");
+                    System.out.println(LINE);
                     continue;
                 }
 
@@ -126,12 +121,15 @@ public class CowPay {
 
                 //Second part of input split into further parts
                 try {
+                    //HANDLE MISSING PARAMS, INVALID FORMAT
                     String[] split = inputStrings[1].trim().split(" /by ", 2);
                     description = split[0];
                     by = split[1];
                 } catch (Exception e) {
                     System.out.println("\tAn deadline has a description, /by.");
                     System.out.println("\tE.g. Enter: deadline return book /by Sunday");
+                    System.out.println("\tUse the exact format! - \"/by\"");
+                    System.out.println(LINE);
                     continue;
                 }
                 
@@ -146,6 +144,7 @@ public class CowPay {
             } else if (next.equals("todo")) {
                 //Todo task
                 if (inputStrings.length < 2) {
+                    //HANDLE MISSING PARAMS
                     System.out.println("\tA todo has a description.");
                     System.out.println("\tE.g. Enter: todo borrow book");
                 } else {
@@ -159,7 +158,8 @@ public class CowPay {
                 }
 
             } else {
-                System.out.println("\t" + "??? Invalid command. Try again.");
+                System.out.println("\t" + "WYD?? Try a valid command!");
+                System.out.println("\tCommands: todo, deadline, event, list, mark, unmark, bye");
             }
 
             System.out.println(LINE);

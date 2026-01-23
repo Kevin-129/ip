@@ -7,7 +7,11 @@
 	You need do these: 
 	____________________________________________________________
 	____________________________________________________________
-	??? Invalid command. Try again.
+	WYD?? Try a valid command!
+	Commands: todo, deadline, event, list, mark, unmark, bye
+	____________________________________________________________
+	____________________________________________________________
+	No tasks! Stop skiving!
 	____________________________________________________________
 	____________________________________________________________
 	A todo has a description.
@@ -29,48 +33,69 @@
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	An deadline has a description, /by.
 	E.g. Enter: deadline return book /by Sunday
+	Use the exact format! - "/by"
+	____________________________________________________________
 	____________________________________________________________
 	Ok you need to: 
 	  [D][ ] fly kite (by: TONIGHT)
 	You have 2 tasks.
 	____________________________________________________________
 	____________________________________________________________
-	??? Invalid command. Try again.
+	WYD?? Try a valid command!
+	Commands: todo, deadline, event, list, mark, unmark, bye
 	____________________________________________________________
 	____________________________________________________________
-	Give a valid task number.
+	Give a valid task number! 1 to 2
+	____________________________________________________________
 	____________________________________________________________
 	Ok this one marked as not done: 
 	  [ ] touch grass
 	____________________________________________________________
 	____________________________________________________________
-	??? Invalid command. Try again.
+	WYD?? Try a valid command!
+	Commands: todo, deadline, event, list, mark, unmark, bye
 	____________________________________________________________
 	____________________________________________________________
-	Give a valid task number.
+	Give a valid task number! 1 to 2
 	____________________________________________________________
-	??? Invalid command. Try again.
+	____________________________________________________________
+	WYD?? Try a valid command!
+	Commands: todo, deadline, event, list, mark, unmark, bye
 	____________________________________________________________
 	____________________________________________________________
 	Ok this one marked as done: 
@@ -84,30 +109,48 @@
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	An event has a description, /from and /to.
 	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	Use the exact format! - "/from" and "/to"
+	____________________________________________________________
 	____________________________________________________________
 	Ok you need to: 
 	  [E][ ] e (from: f to: t)
