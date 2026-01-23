@@ -1,7 +1,141 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+	____________________________________________________________
+	Hi baby, I'm CowPay! Nice to meet you!
+	Wat u wan me do?
+	____________________________________________________________
 
+	____________________________________________________________
+	You need do these: 
+	____________________________________________________________
+	____________________________________________________________
+	??? Invalid command. Try again.
+	____________________________________________________________
+	____________________________________________________________
+	A todo has a description.
+	E.g. Enter: todo borrow book
+	____________________________________________________________
+	____________________________________________________________
+	Ok you need to: 
+	  [T][ ] touch grass
+	You have 1 tasks.
+	____________________________________________________________
+	____________________________________________________________
+	You need do these: 
+	1.[T][ ] touch grass
+	____________________________________________________________
+	____________________________________________________________
+	Ok this one marked as done: 
+	  [X] touch grass
+	____________________________________________________________
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	An deadline has a description, /by.
+	E.g. Enter: deadline return book /by Sunday
+	____________________________________________________________
+	Ok you need to: 
+	  [D][ ] fly kite (by: TONIGHT)
+	You have 2 tasks.
+	____________________________________________________________
+	____________________________________________________________
+	??? Invalid command. Try again.
+	____________________________________________________________
+	____________________________________________________________
+	Give a valid task number.
+	____________________________________________________________
+	Ok this one marked as not done: 
+	  [ ] touch grass
+	____________________________________________________________
+	____________________________________________________________
+	??? Invalid command. Try again.
+	____________________________________________________________
+	____________________________________________________________
+	Give a valid task number.
+	____________________________________________________________
+	??? Invalid command. Try again.
+	____________________________________________________________
+	____________________________________________________________
+	Ok this one marked as done: 
+	  [X] fly kite
+	____________________________________________________________
+	____________________________________________________________
+	You need do these: 
+	1.[T][ ] touch grass
+	2.[D][X] fly kite (by: TONIGHT)
+	____________________________________________________________
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	An event has a description, /from and /to.
+	E.g. Enter: event project meeting /from Mon 2pm /to 4pm
+	____________________________________________________________
+	Ok you need to: 
+	  [E][ ] e (from: f to: t)
+	You have 3 tasks.
+	____________________________________________________________
+	____________________________________________________________
+	Ok this one marked as not done: 
+	  [ ] fly kite
+	____________________________________________________________
+	____________________________________________________________
+	Ok this one marked as done: 
+	  [X] e
+	____________________________________________________________
+	____________________________________________________________
+	You need do these: 
+	1.[T][ ] touch grass
+	2.[D][ ] fly kite (by: TONIGHT)
+	3.[E][X] e (from: f to: t)
+	____________________________________________________________
+	____________________________________________________________
+	Ok this one marked as not done: 
+	  [ ] e
+	____________________________________________________________
+	____________________________________________________________
+	You need do these: 
+	1.[T][ ] touch grass
+	2.[D][ ] fly kite (by: TONIGHT)
+	3.[E][ ] e (from: f to: t)
+	____________________________________________________________
+	____________________________________________________________
+	Bye!! Don't come back!

@@ -12,6 +12,7 @@ public class CowPay {
         System.out.println(LINE);
         System.out.println("\tHi baby, I'm " + name + "! Nice to meet you!");
         System.out.println("\tWat u wan me do?");
+        System.out.println(LINE);
         System.out.println();
 
         while (true) {

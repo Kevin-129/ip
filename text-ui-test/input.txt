@@ -1,0 +1,39 @@
+list
+shut up
+todo
+todo touch grass
+list
+mark 1
+deadline
+deadline fly kite 
+deadline fly kite by
+deadline fly kite /b
+deadline fly kite /bye
+deadline fly kite /by
+deadline fly kite /b TONIGHT
+deadline fly kite /bye TONIGHT
+deadline fly kite /by TONIGHT
+unmark1
+unmark one
+unmark 1
+mark3
+mark 3
+mark2
+mark 2
+list
+event
+event e
+event e from 
+event e /fro
+event e /frome
+event e /from f
+event e /from f to t
+event e /from f /t t
+event e /from f /to
+event e /from f /to t
+unmark 2
+mark 3
+list
+unmark 3
+list
+bye
