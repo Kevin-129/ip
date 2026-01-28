@@ -1,16 +1,23 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CowPay {
 
-    public static final String name = "CowPay";
-    private static final String LINE = "\t____________________________________________________________"; 
+    private static final String NAME = "CowPay";
+    private static final String LINE = "\t____________________________________________________________";
+
+    /**
+     * Runs the CowPay chatbot
+     *
+     * @param args not used
+     */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = FileHelper.loadFromFile();
 
         System.out.println(LINE);
-        System.out.println("\tHi baby, I'm " + name + "! Nice to meet you!");
+        System.out.println("\tHi, I'm " + NAME + "! Nice to meet you!");
         System.out.println("\tWat u wan me do?");
         System.out.println(LINE);
         System.out.println();
@@ -19,13 +26,13 @@ public class CowPay {
             if (!scanner.hasNextLine()) {
                 break; // Exit if no more input
             }
-            String inputStrings[] = scanner.nextLine().trim().split(" ", 2);
+            String[] inputStrings = scanner.nextLine().trim().split(" ", 2);
             //Split on first space only
             String next = inputStrings[0];
 
             System.out.println(LINE);
 
-            if(next.equals("bye")) {
+            if (next.equals("bye")) {
                 System.out.println("\tBye!! Don't come back!");
                 break; // Exit
 
@@ -42,22 +49,24 @@ public class CowPay {
                     if (t instanceof Event) {
                         Event e = (Event) t;
                         System.out.print("[E]");
-                        time = e.getFromAndTo();
+                        time = " (from: " + e.getFrom() + " to: " + e.getTo() + ")";
 
                     } else if (t instanceof Deadline) {
                         Deadline d = (Deadline) t;
                         System.out.print("[D]");
-                        time = d.getBy();
+                        time = " (by: " + d.getBy() + ")";
                     } else {
                         System.out.print("[T]");
                     }
                     System.out.print(t.getStatusIcon() + " ");
                     System.out.println(t.getDescription() + time);
-
+                    // E.g.
+                    // 1.[T][ ] taskDescription
+                    // 2.[D][X] taskDescription (by: time)
+                    // 3.[E][ ] taskDescription (from: time1 to: time2)
                 }
 
             } else if (next.equals("mark") || next.equals("unmark")) {
-               
                 //Mark or unmark task
                 Task t;
                 try {
@@ -74,16 +83,16 @@ public class CowPay {
                     System.out.println(LINE);
                     continue;
                 }
-            
                 if (next.equals("mark")) {
                     t.markAsDone();
+                    FileHelper.saveAll(tasks);
                     System.out.println("\tOk, this one marked as done: ");
                 } else {
                     t.markAsNotDone();
-                    System.out.println("\tOk, this one marked as not done: ");                
+                    FileHelper.saveAll(tasks);
+                    System.out.println("\tOk, this one marked as not done: ");
                 }
                 System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
-                
 
             } else if (next.equals("event")) {
                 //Event task
@@ -109,8 +118,10 @@ public class CowPay {
 
                 Event e = new Event(description, from, to);
                 tasks.add(e);
+                FileHelper.saveAll(tasks);
+
                 System.out.println("\tOk, you need to: ");
-                System.out.println("\t  [E][ ] " + description + e.getFromAndTo());
+                System.out.println("\t  [E][ ] " + description + " (from: " + e.getFrom() + " to: " + e.getTo() + ")");
 
                 System.out.println("\tYou have " + tasks.size() + " tasks.");
 
@@ -132,14 +143,14 @@ public class CowPay {
                     System.out.println(LINE);
                     continue;
                 }
-                
                 Deadline d = new Deadline(description, by);
                 tasks.add(d);
+                FileHelper.saveAll(tasks);
+
                 System.out.println("\tOk, you need to: ");
-                System.out.println("\t  [D][ ] " + description + d.getBy());
+                System.out.println("\t  [D][ ] " + description + " (by: " + d.getBy() + ")");
 
                 System.out.println("\tYou have " + tasks.size() + " tasks.");
-                
 
             } else if (next.equals("todo")) {
                 //Todo task
@@ -151,6 +162,8 @@ public class CowPay {
                     String description = inputStrings[1];
                     Task t = new Task(description);
                     tasks.add(t);
+                    FileHelper.saveAll(tasks);
+
                     System.out.println("\tOk, you need to: ");
                     System.out.println("\t  [T][ ] " + description);
 
@@ -175,19 +188,18 @@ public class CowPay {
                     System.out.println(LINE);
                     continue;
                 }
-            
                 String time = "";
 
                 System.out.println("\tOk, I remove this task: ");
                 if (t instanceof Event) {
                     Event e = (Event) t;
                     System.out.print("\t  [E]");
-                    time = e.getFromAndTo();
+                    time = " (from: " + e.getFrom() + " to: " + e.getTo() + ")";
 
                 } else if (t instanceof Deadline) {
                     Deadline d = (Deadline) t;
                     System.out.print("\t  [D]");
-                    time = d.getBy();
+                    time = " (by: " + d.getBy() + ")";
                 } else {
                     System.out.print("\t  [T]");
                 }
@@ -196,7 +208,8 @@ public class CowPay {
                 System.out.println("\tYou have " + tasks.size() + " tasks.");
 
                 tasks.remove(t);
-                
+                FileHelper.saveAll(tasks);
+
             } else {
                 System.out.println("\t" + "WYD?? Try a valid command!");
                 System.out.println("\tCommands: todo, deadline, event, ");
@@ -209,4 +222,6 @@ public class CowPay {
 
         scanner.close();
     }
+
 }
+
