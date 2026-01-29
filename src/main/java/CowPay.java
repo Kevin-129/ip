@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CowPay {
@@ -18,7 +17,9 @@ public class CowPay {
 
         String filePath = "data/cowpay.txt";
         Storage storage = new Storage(filePath);
-        ArrayList<Task> tasks = storage.load();
+
+        TaskList tasks = new TaskList(storage.load());
+
 
         ui.showWelcome(NAME);
 
@@ -85,11 +86,11 @@ public class CowPay {
                 }
                 if (next.equals("mark")) {
                     t.markAsDone();
-                    storage.save(tasks);
+                    storage.save(tasks.asArrayList());
                     System.out.println("\tOk, this one marked as done: ");
                 } else {
                     t.markAsNotDone();
-                    storage.save(tasks);
+                    storage.save(tasks.asArrayList());
                     System.out.println("\tOk, this one marked as not done: ");
                 }
                 System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
@@ -118,7 +119,7 @@ public class CowPay {
 
                 Event e = new Event(description, from, to);
                 tasks.add(e);
-                storage.save(tasks);
+                storage.save(tasks.asArrayList());
 
                 System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [E][ ] " + description + " (from: " + e.getFrom() + " to: " + e.getTo() + ")");
@@ -145,7 +146,7 @@ public class CowPay {
                 }
                 Deadline d = new Deadline(description, by);
                 tasks.add(d);
-                storage.save(tasks);
+                storage.save(tasks.asArrayList());
 
                 System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [D][ ] " + description + " (by: " + d.getBy() + ")");
@@ -162,7 +163,7 @@ public class CowPay {
                     String description = inputStrings[1];
                     Task t = new Task(description);
                     tasks.add(t);
-                    storage.save(tasks);
+                    storage.save(tasks.asArrayList());
 
                     System.out.println("\tOk, you need to: ");
                     System.out.println("\t  [T][ ] " + description);
@@ -174,6 +175,7 @@ public class CowPay {
 
                 //Delete task
                 Task t = null;
+                int taskNum = -1;
                 try {
                     //HANDLE EMPTY LIST, INVALID NUMBERS,  OOB
                     if (tasks.size() < 1) {
@@ -181,7 +183,7 @@ public class CowPay {
                         ui.showLine();
                         continue;
                     }
-                    int taskNum = Integer.parseInt(inputStrings[1]) - 1;
+                    taskNum = Integer.parseInt(inputStrings[1]) - 1;
                     t = tasks.get(taskNum);
                 } catch (Exception e) {
                     System.out.println("\tGive a valid task number! 1 to " + tasks.size());
@@ -203,12 +205,13 @@ public class CowPay {
                 } else {
                     System.out.print("\t  [T]");
                 }
+
+                tasks.remove(taskNum);
+                storage.save(tasks.asArrayList());
+
                 System.out.print(t.getStatusIcon() + " ");
                 System.out.println(t.getDescription() + time);
                 System.out.println("\tYou have " + tasks.size() + " tasks.");
-
-                tasks.remove(t);
-                storage.save(tasks);
 
             } else {
                 System.out.println("\t" + "WYD?? Try a valid command!");
