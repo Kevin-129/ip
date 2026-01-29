@@ -1,52 +1,190 @@
+# TYPO TESTS
 list
 shut up
+List
+LIST
+ liSt
+markk 1
+mrk 1
+marrk 1
+unmrk 1
+unmarkk 1
+deleete 1
+dlete 1
+del ete 1
+todoO SHOWERRR
+tod o SHOWERRR
+dead line submit file /by 29/1/2026 2359
+deadln submit file /by 29/1/2026 2359
+deadlin submit file /by 29/1/2026 2359
+deaadline submit file /by 29/1/2026 2359
+evnt SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359
+evnet SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359
+even t SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359
+eventSLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359
+mark  1
+unmark  1
+delete  1
+todo  SHOWERRR
+deadline  submit file /by 29/1/2026 2359
+event  SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359
+
+# EMPTY LIST TESTS
+mark
 mark-1
+mark 0
 mark 1
+mark one
+mark 999
+mark 1 2
+mark 1x
+mark x1
+mark 01
+mark +1
+mark --1
+mark 1.0
+
+unmark
+unmark-1
+unmark 0
+unmark 1
+unmark one
+unmark 999
+unmark 1 2
+unmark 1x
+unmark x1
+unmark 01
+unmark +1
+unmark --1
+unmark 1.0
+
+delete
 delete1
 delete-1
+delete 0
 delete 1
+delete one
+delete 999
+delete 1 2
+delete 1x
+delete x1
+delete 01
+delete +1
+delete --1
+delete 1.0
+
+list
+
+# TASK TESTS
 todo
-todo touch grass
+todo    
+to do SHOWERRR
+tod o SHOWERRR
+todoSHOWERRR
+todo/
+todo /by 29/1/2026 2359
+todo SHOWERRR
 list
-mark 1
-list
+
 deadline
-deadline fly kite 
-deadline fly kite by
-deadline fly kite /b
-deadline fly kite /bye
-deadline fly kite /by
-deadline fly kite /b TONIGHT
-deadline fly kite /bye TONIGHT
-deadline fly kite /by TONIGHT
-unmark1
-unmark one
-unmark 1
+deadlin submit file /by 29/1/2026 2359
+deadline submit file
+deadline submit file /b
+deadline submit file /bye
+deadline submit file by
+deadline submit file /by
+deadline submit file /by    
+deadline submit file /by TONIGHT
+deadline submit file /by 29/1/2026
+deadline submit file /by 29/1/2026    
+deadline submit file /by 29/1/2026 23
+deadline submit file /by 29/1/2026 235
+deadline submit file /by 29/1/2026 23590
+deadline submit file /by 29/1/2026 2400
+deadline submit file /by 29/1/2026 2460
+deadline submit file /by 29/1/2026 2360
+deadline submit file /by 29/1/2026 -100
+deadline submit file /by 29/1/2026 18:00
+deadline submit file /by 29-1-2026 2359
+deadline submit file /by 2026-01-29 2359
+deadline submit file /by 29/01/2026 2359
+deadline submit file /by 29/1/26 2359
+deadline submit file /by 31/2/2026 2359
+deadline submit file /by 0/1/2026 2359
+deadline submit file /by 29/0/2026 2359
+deadline submit file /by 29/13/2026 2359
+deadline submit file /by 32/1/2026 2359
+deadline submit file /by 29/1/2026 9999
+deadline submit file /by 29/1/2026 000
+deadline submit file /by 29/1/2026 abcd
+deadline submit file /by abcd 2359
+deadline submit file /by 29/1/2026 2359 extra
+deadline submit file /by 29/1/2026 2359
 list
-mark3
-mark 3
-mark2
-mark 2
-list
+
 event
-event e
-event e from 
-event e /fro
-event e /frome
-event e /from f
-event e /from f to t
-event e /from f /t t
-event e /from f /to
-event e /from f /to t
-unmark 2
+evnt SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359
+event SLEEEEEP
+event SLEEEEEP /fro
+event SLEEEEEP /from
+event SLEEEEEP /from    
+event SLEEEEEP /from TONIGHT
+event SLEEEEEP /from 28/1/2026
+event SLEEEEEP /from 28/1/2026    
+event SLEEEEEP /from 28/1/2026 23
+event SLEEEEEP /from 28/1/2026 235
+event SLEEEEEP /from 28/1/2026 2359
+event SLEEEEEP /to 29/1/2026 2359
+event SLEEEEEP /from 28/1/2026 2359 /t 29/1/2026 2359
+event SLEEEEEP /from 28/1/2026 2359 /to
+event SLEEEEEP /from 28/1/2026 2359 /to    
+event SLEEEEEP /from 28/1/2026 2359 /to TONIGHT
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026    
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 23
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 235
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2400
+event SLEEEEEP /from 28/1/2026 2460 /to 29/1/2026 2359
+event SLEEEEEP /from 31/2/2026 2359 /to 29/1/2026 2359
+event SLEEEEEP /from 28/1/2026 2359 /to 31/2/2026 2359
+event SLEEEEEP /from 28-1-2026 2359 /to 29/1/2026 2359
+event SLEEEEEP /from 28/1/2026 18:00 /to 29/1/2026 2359
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 18:00
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359 extra
+event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359
+list
+
+mark 1
+mark 2
 mark 3
 list
+unmark 1
+unmark 2
 unmark 3
 list
+markk 1
+unmarkk 2
+deleete 3
+list
+mark 0
+mark -1
+mark 999
+unmark 0
+unmark -1
+unmark 999
+delete 0
+delete -1
+delete 999
+list
+delete 2
+list
+mark 2
+unmark 2
 delete 2
 list
 delete 1
 list
-delete 3
+delete 1
 list
+
 bye
