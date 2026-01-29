@@ -1,5 +1,14 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    protected String by;
+
+    private static final DateTimeFormatter INPUT_FORMAT =
+        DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+    private static final DateTimeFormatter OUTPUT_FORMAT =
+        DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+
+    protected LocalDateTime by;
 
     /**
      * Creates a new deadline task with given description and deadline.
@@ -10,10 +19,15 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = LocalDateTime.parse(by, INPUT_FORMAT);
     }
 
     public String getBy() {
-        return this.by;
+        return this.by.format(OUTPUT_FORMAT);
+    }
+
+    public String getByInputFormat() {
+        return this.by.format(INPUT_FORMAT);
     }
 }
+

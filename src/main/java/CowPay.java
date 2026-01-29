@@ -68,7 +68,7 @@ public class CowPay {
 
             } else if (next.equals("mark") || next.equals("unmark")) {
                 //Mark or unmark task
-                Task t;
+                Task t = null;
                 try {
                     //HANDLE EMPTY LIST, INVALID NUMBERS,  OOB
                     if (tasks.size() < 1) {
@@ -96,9 +96,9 @@ public class CowPay {
 
             } else if (next.equals("event")) {
                 //Event task
-                String description;
-                String from;
-                String to;
+                String description = "";
+                String from = "";
+                String to = "";
 
                 //Second part of input split into further parts
                 try {
@@ -110,7 +110,7 @@ public class CowPay {
                     to = split2[1];
                 } catch (Exception e) {
                     System.out.println("\tAn event has a description, /from and /to.");
-                    System.out.println("\tE.g. Enter: event project meeting /from Mon 2pm /to 4pm");
+                    System.out.println("\tE.g. Enter: event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359");
                     System.out.println("\tUse the exact format! - \"/from\" and \"/to\"");
                     System.out.println(LINE);
                     continue;
@@ -127,8 +127,8 @@ public class CowPay {
 
             } else if (next.equals("deadline")) {
                 //Deadline task
-                String description;
-                String by;
+                String description = "";
+                String by = "";
 
                 //Second part of input split into further parts
                 try {
@@ -138,7 +138,7 @@ public class CowPay {
                     by = split[1];
                 } catch (Exception e) {
                     System.out.println("\tAn deadline has a description, /by.");
-                    System.out.println("\tE.g. Enter: deadline return book /by Sunday");
+                    System.out.println("\tE.g. Enter: deadline submit file /by 29/1/2026 2359");
                     System.out.println("\tUse the exact format! - \"/by\"");
                     System.out.println(LINE);
                     continue;
@@ -157,7 +157,7 @@ public class CowPay {
                 if (inputStrings.length < 2) {
                     //HANDLE MISSING PARAMS
                     System.out.println("\tA todo has a description.");
-                    System.out.println("\tE.g. Enter: todo borrow book");
+                    System.out.println("\tE.g. Enter: todo SHOWERRR");
                 } else {
                     String description = inputStrings[1];
                     Task t = new Task(description);
@@ -173,7 +173,7 @@ public class CowPay {
             } else if (next.equals("delete")) {
 
                 //Delete task
-                Task t;
+                Task t = null;
                 try {
                     //HANDLE EMPTY LIST, INVALID NUMBERS,  OOB
                     if (tasks.size() < 1) {

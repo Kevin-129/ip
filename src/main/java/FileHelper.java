@@ -106,10 +106,12 @@ public class FileHelper {
 
         if (t instanceof Deadline) {
             Deadline d = (Deadline) t;
-            return "D|" + isDone + "|" + d.getDescription() + "|" + d.getBy();
+            return "D|" + isDone + "|" + d.getDescription() + "|"
+                + d.getByInputFormat();
         } else if (t instanceof Event) {
             Event e = (Event) t;
-            return "E|" + isDone + "|" + e.getDescription() + "|" + e.getFrom() + "|" + e.getTo();
+            return "E|" + isDone + "|" + e.getDescription() + "|"
+                + e.getFromInputFormat() + "|" + e.getToInputFormat();
         } else {
             return "T|" + isDone + "|" + t.getDescription();
         }
