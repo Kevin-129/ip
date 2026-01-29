@@ -4,7 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileHelper {
+public class Storage {
+
+    private final String filePath;
+
+    /**
+     * Creates a Storage that loads from and saves to the given file path
+     *
+     * @param filePath e.g., data/cowpay.txt
+     */
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
 
     /**
      * Loads tasks from ./data/cowpay.txt
@@ -12,16 +23,19 @@ public class FileHelper {
      *
      * @return ArrayList<Task> containing all tasks loaded from file
      */
-    public static ArrayList<Task> loadFromFile() {
+    public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
-            File dir = new File("data");
-            dir.mkdirs(); // create ./data if doesn't exist
+            File file = new File(filePath);
 
-            File file = new File(dir, "cowpay.txt");
+            File parent = file.getParentFile();
+            if (parent != null) {
+                parent.mkdirs();
+            }
+
             if (!file.exists()) {
-                file.createNewFile(); // create file if doesn't exist
+                file.createNewFile();
                 return tasks;
             }
 
@@ -70,12 +84,15 @@ public class FileHelper {
      *
      * @param tasks List of tasks to be saved
      */
-    public static void saveAll(ArrayList<Task> tasks) {
+    public void save(ArrayList<Task> tasks) {
         try {
-            File dir = new File("data");
-            dir.mkdirs();
+            File file = new File(filePath);
 
-            File file = new File(dir, "cowpay.txt");
+            File parent = file.getParentFile();
+            if (parent != null) {
+                parent.mkdirs();
+            }
+
             if (!file.exists()) {
                 file.createNewFile();
             }

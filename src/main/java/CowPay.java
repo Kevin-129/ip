@@ -13,8 +13,12 @@ public class CowPay {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = FileHelper.loadFromFile();
+
         Ui ui = new Ui();
+
+        String filePath = "data/cowpay.txt";
+        Storage storage = new Storage(filePath);
+        ArrayList<Task> tasks = storage.load();
 
         ui.showWelcome(NAME);
 
@@ -81,11 +85,11 @@ public class CowPay {
                 }
                 if (next.equals("mark")) {
                     t.markAsDone();
-                    FileHelper.saveAll(tasks);
+                    storage.save(tasks);
                     System.out.println("\tOk, this one marked as done: ");
                 } else {
                     t.markAsNotDone();
-                    FileHelper.saveAll(tasks);
+                    storage.save(tasks);
                     System.out.println("\tOk, this one marked as not done: ");
                 }
                 System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
@@ -114,7 +118,7 @@ public class CowPay {
 
                 Event e = new Event(description, from, to);
                 tasks.add(e);
-                FileHelper.saveAll(tasks);
+                storage.save(tasks);
 
                 System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [E][ ] " + description + " (from: " + e.getFrom() + " to: " + e.getTo() + ")");
@@ -141,7 +145,7 @@ public class CowPay {
                 }
                 Deadline d = new Deadline(description, by);
                 tasks.add(d);
-                FileHelper.saveAll(tasks);
+                storage.save(tasks);
 
                 System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [D][ ] " + description + " (by: " + d.getBy() + ")");
@@ -158,7 +162,7 @@ public class CowPay {
                     String description = inputStrings[1];
                     Task t = new Task(description);
                     tasks.add(t);
-                    FileHelper.saveAll(tasks);
+                    storage.save(tasks);
 
                     System.out.println("\tOk, you need to: ");
                     System.out.println("\t  [T][ ] " + description);
@@ -204,7 +208,7 @@ public class CowPay {
                 System.out.println("\tYou have " + tasks.size() + " tasks.");
 
                 tasks.remove(t);
-                FileHelper.saveAll(tasks);
+                storage.save(tasks);
 
             } else {
                 System.out.println("\t" + "WYD?? Try a valid command!");
