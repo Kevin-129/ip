@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class CowPay {
 
     private static final String NAME = "CowPay";
-    private static final String LINE = "\t____________________________________________________________";
 
     /**
      * Runs the CowPay chatbot
@@ -15,12 +14,9 @@ public class CowPay {
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = FileHelper.loadFromFile();
+        Ui ui = new Ui();
 
-        System.out.println(LINE);
-        System.out.println("\tHi, I'm " + NAME + "! Nice to meet you!");
-        System.out.println("\tWat u wan me do?");
-        System.out.println(LINE);
-        System.out.println();
+        ui.showWelcome(NAME);
 
         while (true) {
             if (!scanner.hasNextLine()) {
@@ -30,10 +26,10 @@ public class CowPay {
             //Split on first space only
             String next = inputStrings[0];
 
-            System.out.println(LINE);
+            ui.showLine();
 
             if (next.equals("bye")) {
-                System.out.println("\tBye!! Don't come back!");
+                ui.showBye();
                 break; // Exit
 
             } else if (next.equals("list")) {
@@ -73,14 +69,14 @@ public class CowPay {
                     //HANDLE EMPTY LIST, INVALID NUMBERS,  OOB
                     if (tasks.size() < 1) {
                         System.out.println("\tNo tasks! Stop skiving!");
-                        System.out.println(LINE);
+                        ui.showLine();
                         continue;
                     }
                     int taskNum = Integer.parseInt(inputStrings[1]) - 1;
                     t = tasks.get(taskNum);
                 } catch (Exception e) {
                     System.out.println("\tGive a valid task number! 1 to " + tasks.size());
-                    System.out.println(LINE);
+                    ui.showLine();
                     continue;
                 }
                 if (next.equals("mark")) {
@@ -112,7 +108,7 @@ public class CowPay {
                     System.out.println("\tAn event has a description, /from and /to.");
                     System.out.println("\tE.g. Enter: event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359");
                     System.out.println("\tUse the exact format! - \"/from\" and \"/to\"");
-                    System.out.println(LINE);
+                    ui.showLine();
                     continue;
                 }
 
@@ -140,7 +136,7 @@ public class CowPay {
                     System.out.println("\tAn deadline has a description, /by.");
                     System.out.println("\tE.g. Enter: deadline submit file /by 29/1/2026 2359");
                     System.out.println("\tUse the exact format! - \"/by\"");
-                    System.out.println(LINE);
+                    ui.showLine();
                     continue;
                 }
                 Deadline d = new Deadline(description, by);
@@ -178,14 +174,14 @@ public class CowPay {
                     //HANDLE EMPTY LIST, INVALID NUMBERS,  OOB
                     if (tasks.size() < 1) {
                         System.out.println("\tNo tasks! Stop skiving!");
-                        System.out.println(LINE);
+                        ui.showLine();
                         continue;
                     }
                     int taskNum = Integer.parseInt(inputStrings[1]) - 1;
                     t = tasks.get(taskNum);
                 } catch (Exception e) {
                     System.out.println("\tGive a valid task number! 1 to " + tasks.size());
-                    System.out.println(LINE);
+                    ui.showLine();
                     continue;
                 }
                 String time = "";
@@ -216,7 +212,7 @@ public class CowPay {
                 System.out.println("\t          list, mark, unmark, delete, bye");
             }
 
-            System.out.println(LINE);
+            ui.showLine();
 
         }
 
