@@ -77,6 +77,50 @@ public class CowPay {
                     // 3.[E][ ] SLEEEEEP (from: Jan 28 2026 23:59 to: Jan 29 2026 23:59)
                 }
 
+            } else if (command.equals("find")) {
+                if (details.isEmpty()) {
+                    System.out.println("\tFind needs a 'keyword'.");
+                    System.out.println("\tE.g. Enter: find book");
+                    ui.showLine();
+                    continue;
+                }
+
+                String keyword = details.toLowerCase();
+                System.out.println("\tMatching Tasks:");
+
+                int shownCount = 1;
+                for (int i = 0; i < tasks.size(); i++) {
+                    Task t = tasks.get(i);
+
+                    if (!t.getDescription().toLowerCase().contains(keyword)) {
+                        continue;
+                    }
+
+                    System.out.print("\t" + shownCount + ".");
+
+                    String time = "";
+                    if (t instanceof Event) {
+                        Event e = (Event) t;
+                        System.out.print("[E]");
+                        time = " (from: " + e.getFrom() + " to: " + e.getTo() + ")";
+                    } else if (t instanceof Deadline) {
+                        Deadline d = (Deadline) t;
+                        System.out.print("[D]");
+                        time = " (by: " + d.getBy() + ")";
+                    } else {
+                        System.out.print("[T]");
+                    }
+
+                    System.out.print(t.getStatusIcon() + " ");
+                    System.out.println(t.getDescription() + time);
+
+                    shownCount++;
+                }
+
+                if (shownCount == 1) {
+                    System.out.println("\tNo matching tasks...");
+                }
+
             } else if (command.equals("mark") || command.equals("unmark")) {
                 //Mark or unmark task
                 Task t = null;
