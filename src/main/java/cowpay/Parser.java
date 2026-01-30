@@ -58,7 +58,7 @@ public class Parser {
 
         } catch (Exception e) {
             throw new IllegalArgumentException(
-                "\tAn deadline has a description, /by.\n"
+                "\tA deadline has a description, /by.\n"
                     + "\tE.g. Enter: deadline submit file /by 29/1/2026 2359\n"
                     + "\tUse the exact format! - \"/by\""
             );
