@@ -2,6 +2,9 @@ package cowpay;
 
 import java.util.Scanner;
 
+/**
+ * Handles user interactions
+ */
 public class Ui {
     private static final String LINE = "\t____________________________________________________________";
 
@@ -22,14 +25,19 @@ public class Ui {
         System.out.println();
     }
 
+    /**
+     * Shows goodbye message
+     */
     public void showBye() {
         System.out.println("\tBye!! Don't come back!");
     }
 
-    public void showMessage(String message) {
-        System.out.println(message);
-    }
-
+    /**
+     * Reads a command from the user
+     *
+     * @param scanner The scanner to read input from
+     * @return The user's command
+     */
     public String readCommand(Scanner scanner) {
         return scanner.nextLine();
     }

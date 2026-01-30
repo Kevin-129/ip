@@ -3,6 +3,9 @@ package cowpay;
 import cowpay.task.Deadline;
 import cowpay.task.Event;
 
+/**
+ * Parses user input into task objects
+ */
 public class Parser {
 
     /**

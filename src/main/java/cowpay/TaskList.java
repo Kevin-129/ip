@@ -4,9 +4,17 @@ import java.util.ArrayList;
 
 import cowpay.task.Task;
 
+/**
+ * Represents a list of tasks
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
+    /**
+     * Creates a TaskList with the given tasks
+     *
+     * @param tasks ArrayList<Task>to initialize the TaskList
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
