@@ -10,6 +10,9 @@ import cowpay.task.Deadline;
 import cowpay.task.Event;
 import cowpay.task.Task;
 
+/**
+ * Handles loading and saving tasks to a file
+ */
 public class Storage {
 
     private final String filePath;
