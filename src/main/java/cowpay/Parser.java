@@ -1,3 +1,8 @@
+package cowpay;
+
+import cowpay.task.Deadline;
+import cowpay.task.Event;
+
 public class Parser {
 
     /**

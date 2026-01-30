@@ -1,3 +1,5 @@
+package cowpay;
+
 import java.util.Scanner;
 
 public class Ui {

@@ -1,4 +1,8 @@
+package cowpay;
+
 import java.util.ArrayList;
+
+import cowpay.task.Task;
 
 public class TaskList {
     private final ArrayList<Task> tasks;

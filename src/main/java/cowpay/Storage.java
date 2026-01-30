@@ -1,8 +1,14 @@
+package cowpay;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import cowpay.task.Deadline;
+import cowpay.task.Event;
+import cowpay.task.Task;
 
 public class Storage {
 

@@ -1,4 +1,10 @@
+package cowpay;
+
 import java.util.Scanner;
+
+import cowpay.task.Deadline;
+import cowpay.task.Event;
+import cowpay.task.Task;
 
 public class CowPay {
 
