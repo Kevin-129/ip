@@ -6,6 +6,9 @@ import cowpay.task.Deadline;
 import cowpay.task.Event;
 import cowpay.task.Task;
 
+/**
+ * The main class for the CowPay chatbot
+ */
 public class CowPay {
 
     private static final String NAME = "CowPay";

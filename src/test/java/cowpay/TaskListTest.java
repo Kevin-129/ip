@@ -9,8 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import cowpay.task.Task;
 
+/**
+ * Tests the TaskList class
+ */
 public class TaskListTest {
 
+    /**
+     * Tests the add method
+     */
     @Test
     public void addTask_success() {
         TaskList tasks = new TaskList(new ArrayList<>());
@@ -18,6 +24,9 @@ public class TaskListTest {
         assertEquals(1, tasks.size());
     }
 
+    /**
+     * Tests the remove method
+     */
     @Test
     public void removeTask_success() {
         TaskList tasks = new TaskList(new ArrayList<>());
@@ -30,6 +39,9 @@ public class TaskListTest {
         assertEquals("B", tasks.get(0).getDescription());
     }
 
+    /**
+     * Tests the asArrayList method
+     */
     @Test
     public void asArrayList_afterAddAndRemove_returnsArrayList() {
         TaskList tasks = new TaskList(new ArrayList<>());
