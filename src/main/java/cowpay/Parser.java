@@ -32,9 +32,9 @@ public class Parser {
 
         } catch (Exception e) {
             throw new IllegalArgumentException(
-                "\tAn event has a description, /from and /to.\n"
-                    + "\tE.g. Enter: event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359\n"
-                    + "\tUse the exact format! - \"/from\" and \"/to\""
+                "An event has a description, /from and /to.\n"
+                    + "E.g. Enter: event SLEEEEEP /from 28/1/2026 2359 /to 29/1/2026 2359\n"
+                    + "Use the exact format! - \"/from\" and \"/to\""
             );
         }
     }
@@ -61,9 +61,9 @@ public class Parser {
 
         } catch (Exception e) {
             throw new IllegalArgumentException(
-                "\tA deadline has a description, /by.\n"
-                    + "\tE.g. Enter: deadline submit file /by 29/1/2026 2359\n"
-                    + "\tUse the exact format! - \"/by\""
+                "A deadline has a description, /by.\n"
+                    + "E.g. Enter: deadline submit file /by 29/1/2026 2359\n"
+                    + "Use the exact format! - \"/by\""
             );
         }
     }

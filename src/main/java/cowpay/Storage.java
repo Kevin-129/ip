@@ -36,7 +36,7 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
-            File file = new File(filePath);
+            File file = new File(this.filePath);
 
             File parent = file.getParentFile();
             if (parent != null) {
@@ -60,7 +60,7 @@ public class Storage {
                 int done = Integer.parseInt(parts[1]);
                 String desc = parts[2];
 
-                Task t;
+                Task t = null;
 
                 if (type.equals("T")) {
                     t = new Task(desc);
@@ -95,7 +95,7 @@ public class Storage {
      */
     public void save(ArrayList<Task> tasks) {
         try {
-            File file = new File(filePath);
+            File file = new File(this.filePath);
 
             File parent = file.getParentFile();
             if (parent != null) {

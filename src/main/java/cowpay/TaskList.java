@@ -20,11 +20,11 @@ public class TaskList {
     }
 
     public int size() {
-        return tasks.size();
+        return this.tasks.size();
     }
 
     public Task get(int index) {
-        return tasks.get(index);
+        return this.tasks.get(index);
     }
 
     public void add(Task task) {
@@ -32,10 +32,14 @@ public class TaskList {
     }
 
     public Task remove(int index) {
-        return tasks.remove(index);
+        return this.tasks.remove(index);
     }
 
     public ArrayList<Task> asArrayList() {
-        return tasks;
+        return this.tasks;
+    }
+
+    public boolean isEmpty() {
+        return this.tasks.isEmpty();
     }
 }
