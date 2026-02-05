@@ -11,12 +11,11 @@ import cowpay.task.Task;
  */
 public class CowPay {
 
-
     private static final String NAME = "CowPay";
 
     private String filePath = "data/cowpay.txt";
     private Storage storage = new Storage(filePath);
-    private TaskList tasks = new TaskList(storage.load());
+    private TaskList tasks = new TaskList(storage.loadTasksFromFile());
 
     /**
      * Gets response from CowPay for a given user input
@@ -183,7 +182,7 @@ public class CowPay {
         }
 
         t.markAsDone();
-        this.storage.save(this.tasks.asArrayList());
+        this.storage.saveTasksToFile(this.tasks.asArrayList());
 
         return "Ok, this one marked as done: \n  "
             + t.getStatusIcon()
@@ -213,7 +212,7 @@ public class CowPay {
         }
 
         t.markAsNotDone();
-        this.storage.save(this.tasks.asArrayList());
+        this.storage.saveTasksToFile(this.tasks.asArrayList());
 
         return "Ok, this one marked as notdone: \n  "
             + t.getStatusIcon()
@@ -236,7 +235,7 @@ public class CowPay {
         }
 
         this.tasks.add(event);
-        this.storage.save(this.tasks.asArrayList());
+        this.storage.saveTasksToFile(this.tasks.asArrayList());
 
         StringBuilder sb = new StringBuilder();
         sb.append("Ok, you need to: \n  ")
@@ -261,7 +260,7 @@ public class CowPay {
         }
 
         this.tasks.add(d);
-        this.storage.save(this.tasks.asArrayList());
+        this.storage.saveTasksToFile(this.tasks.asArrayList());
 
         StringBuilder sb = new StringBuilder();
         sb.append("Ok, you need to: \n  ")
@@ -285,7 +284,7 @@ public class CowPay {
         String description = details;
         Task t = new Task(description);
         this.tasks.add(t);
-        this.storage.save(this.tasks.asArrayList());
+        this.storage.saveTasksToFile(this.tasks.asArrayList());
 
         StringBuilder sb = new StringBuilder();
         sb.append("Ok, you need to: \n  ")
@@ -317,7 +316,7 @@ public class CowPay {
         }
 
         this.tasks.remove(taskNum);
-        this.storage.save(this.tasks.asArrayList());
+        this.storage.saveTasksToFile(this.tasks.asArrayList());
 
         StringBuilder sb = new StringBuilder();
         sb.append("Ok, I remove this task: \n  ")
@@ -351,7 +350,7 @@ public class CowPay {
         String filePath = "data/cowpay.txt";
         Storage storage = new Storage(filePath);
 
-        TaskList tasks = new TaskList(storage.load());
+        TaskList tasks = new TaskList(storage.loadTasksFromFile());
 
 
         ui.showWelcome(NAME);
@@ -464,11 +463,11 @@ public class CowPay {
                 }
                 if (command.equals("mark")) {
                     t.markAsDone();
-                    storage.save(tasks.asArrayList());
+                    storage.saveTasksToFile(tasks.asArrayList());
                     System.out.println("\tOk, this one marked as done: ");
                 } else {
                     t.markAsNotDone();
-                    storage.save(tasks.asArrayList());
+                    storage.saveTasksToFile(tasks.asArrayList());
                     System.out.println("\tOk, this one marked as not done: ");
                 }
                 System.out.println("\t  " + t.getStatusIcon() + " " + t.getDescription());
@@ -485,7 +484,7 @@ public class CowPay {
                 }
 
                 tasks.add(event);
-                storage.save(tasks.asArrayList());
+                storage.saveTasksToFile(tasks.asArrayList());
 
                 System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [E][ ] " + event.getDescription()
@@ -505,7 +504,7 @@ public class CowPay {
                 }
 
                 tasks.add(d);
-                storage.save(tasks.asArrayList());
+                storage.saveTasksToFile(tasks.asArrayList());
 
                 System.out.println("\tOk, you need to: ");
                 System.out.println("\t  [D][ ] " + d.getDescription() + " (by: " + d.getBy() + ")");
@@ -522,7 +521,7 @@ public class CowPay {
                     String description = details;
                     Task t = new Task(description);
                     tasks.add(t);
-                    storage.save(tasks.asArrayList());
+                    storage.saveTasksToFile(tasks.asArrayList());
 
                     System.out.println("\tOk, you need to: ");
                     System.out.println("\t  [T][ ] " + description);
@@ -566,7 +565,7 @@ public class CowPay {
                 }
 
                 tasks.remove(taskNum);
-                storage.save(tasks.asArrayList());
+                storage.saveTasksToFile(tasks.asArrayList());
 
                 System.out.print(t.getStatusIcon() + " ");
                 System.out.println(t.getDescription() + time);

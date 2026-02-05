@@ -32,7 +32,7 @@ public class Storage {
      *
      * @return ArrayList<Task> containing all tasks loaded from file
      */
-    public ArrayList<Task> load() {
+    public ArrayList<Task> loadTasksFromFile() {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
@@ -93,7 +93,7 @@ public class Storage {
      *
      * @param tasks List of tasks to be saved
      */
-    public void save(ArrayList<Task> tasks) {
+    public void saveTasksToFile(ArrayList<Task> tasks) {
         try {
             File file = new File(this.filePath);
 

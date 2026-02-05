@@ -28,6 +28,11 @@ public class Deadline extends Task {
         return this.by.format(OUTPUT_FORMAT);
     }
 
+    /**
+     * Returns the deadline in input format
+     *
+     * @return Deadline in input format
+     */
     public String getByInputFormat() {
         return this.by.format(INPUT_FORMAT);
     }

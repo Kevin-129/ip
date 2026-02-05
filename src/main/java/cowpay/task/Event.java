@@ -20,6 +20,8 @@ public class Event extends Task {
      * @param description Description of task.
      * @param from Start time of event.
      * @param to End time of event.
+     *
+     * @throws IllegalArgumentException If from is after to.
      */
     public Event(String description, String from, String to) {
         super(description);

@@ -20,9 +20,9 @@ import javafx.scene.layout.HBox;
 */
 public class DialogBox extends HBox {
 
-    @FXML 
+    @FXML
     private Label dialog;
-    @FXML 
+    @FXML
     private ImageView displayPicture;
 
     private DialogBox(String text, Image img) {
