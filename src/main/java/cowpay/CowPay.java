@@ -64,6 +64,10 @@ public class CowPay {
      * @return Lists of all tasks (String)
      */
     private String listTasks() {
+
+        //Task list should not be null
+        assert this.tasks != null : "Task list should not be null!!";
+
         if (this.tasks.isEmpty()) {
             return "No tasks!! STOP SKIVING!!";
         }
@@ -88,6 +92,10 @@ public class CowPay {
      * @return matching tasks (String)
      */
     private String findTask(String keyword) {
+
+        //Keyword should not be null or empty
+        assert keyword != null && !keyword.isEmpty() : "Search keyword should not be null or empty!!";
+
         if (keyword.isEmpty()) {
             return "Find needs a 'keyword'. E.g. Enter: find book";
         }
@@ -120,6 +128,9 @@ public class CowPay {
      * @return string builder representation of the task
      */
     private StringBuilder taskToLineSb(Task t) {
+
+        //Task should not be null
+        assert t != null : "Task should not be null!!";
 
         // E.g.
         // [T][X] SHOWERRR
@@ -176,6 +187,10 @@ public class CowPay {
             }
             int taskNum = Integer.parseInt(details) - 1;
             t = this.tasks.get(taskNum);
+
+            // Task number should be within valid bounds
+            assert taskNum >= 0 && taskNum < this.tasks.size() : "Task number out of bounds!!";
+
         } catch (Exception e) {
             return "Give a valid task number! 1 to " + this.tasks.size()
                 + "\nUse 'list' to see all tasks.";
@@ -206,6 +221,9 @@ public class CowPay {
             int taskNum = Integer.parseInt(details) - 1;
             t = this.tasks.get(taskNum);
 
+            // Task number should be within valid bounds
+            assert taskNum >= 0 && taskNum < this.tasks.size() : "Task number out of bounds!!";
+
         } catch (Exception e) {
             return "Give a valid task number! 1 to " + this.tasks.size()
                 + "\nUse 'list' to see all tasks.";
@@ -234,6 +252,9 @@ public class CowPay {
             return e.getMessage();
         }
 
+        //Event should not be null after parsing
+        assert event != null : "Event should not be null!";
+
         this.tasks.add(event);
         this.storage.saveTasksToFile(this.tasks.asArrayList());
 
@@ -259,6 +280,9 @@ public class CowPay {
             return e.getMessage();
         }
 
+        //Deadline should not be null after parsing
+        assert d != null : "Deadline should not be null!";
+
         this.tasks.add(d);
         this.storage.saveTasksToFile(this.tasks.asArrayList());
 
@@ -277,12 +301,17 @@ public class CowPay {
      * @return response message
      */
     private String addTask(String details) {
+
         if (details.isEmpty()) {
             return "A todo has a description. \nE.g. Enter: todo SHOWERRR";
         }
 
         String description = details;
         Task t = new Task(description);
+
+        //Task should not be null
+        assert t != null : "Task should not be null!";
+
         this.tasks.add(t);
         this.storage.saveTasksToFile(this.tasks.asArrayList());
 
@@ -301,6 +330,7 @@ public class CowPay {
      * @return response message
      */
     private String deleteTask(String details) {
+
         Task t = null;
         int taskNum = -1;
 
@@ -309,6 +339,10 @@ public class CowPay {
                 return "No tasks!! STOP SKIVING!!";
             }
             taskNum = Integer.parseInt(details) - 1;
+
+            // Task number should be within valid bounds
+            assert taskNum >= 0 && taskNum < this.tasks.size() : "Task number out of bounds!!";
+
             t = this.tasks.get(taskNum);
         } catch (Exception e) {
             return "Give a valid task number! 1 to " + this.tasks.size()

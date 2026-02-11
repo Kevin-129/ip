@@ -39,6 +39,10 @@ public class Storage {
             File file = new File(this.filePath);
 
             File parent = file.getParentFile();
+
+            //Parent directory should exist
+            assert parent != null && parent.exists() : "Parent directory for file does not exist!!";
+
             if (parent != null) {
                 parent.mkdirs();
             }
@@ -98,6 +102,10 @@ public class Storage {
             File file = new File(this.filePath);
 
             File parent = file.getParentFile();
+
+            //Parent directory should exist
+            assert parent != null && parent.exists() : "Parent directory for file does not exist!!";
+
             if (parent != null) {
                 parent.mkdirs();
             }
@@ -128,6 +136,10 @@ public class Storage {
         // T|0|desc
         // D|1|desc|by
         // E|0|desc|from|to
+
+        //Task should not be null
+        assert t != null : "Task should not be null!!";
+
         int isDone = t.isDone() ? 1 : 0;
 
         if (t instanceof Deadline) {
