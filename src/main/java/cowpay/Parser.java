@@ -24,6 +24,11 @@ public class Parser {
             String from = split2[0].trim();
             String to = split2[1].trim();
 
+            //Description, from, and to cannot be empty
+            assert !description.isEmpty() : "Event description cannot be empty!!";
+            assert !from.isEmpty() : "Event 'from' time cannot be empty!!";
+            assert !to.isEmpty() : "Event 'to' time cannot be empty!!";
+
             if (description.isEmpty() || from.isEmpty() || to.isEmpty()) {
                 throw new IllegalArgumentException();
             }
@@ -52,6 +57,10 @@ public class Parser {
 
             String description = split[0].trim();
             String by = split[1].trim();
+
+            //Description and by cannot be empty
+            assert !description.isEmpty() : "Deadline description cannot be empty!!";
+            assert !by.isEmpty() : "Deadline 'by' time cannot be empty!!";
 
             if (description.isEmpty() || by.isEmpty()) {
                 throw new IllegalArgumentException();
