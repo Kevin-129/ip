@@ -27,6 +27,27 @@ public class Storage {
     }
 
     /**
+     * Creates the storage file if it does not exist
+     *
+     * @return File object representing the storage file
+     * @throws IOException if there is an error creating the file
+     */
+    private File getOrCreateStorageFile() throws IOException {
+        File file = new File(this.filePath);
+
+        File parent = file.getParentFile();
+        if (parent != null) {
+            parent.mkdirs();
+        }
+
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        return file;
+    }
+
+    /**
      * Loads tasks from ./data/cowpay.txt
      * If the folder or file does not exist, create them and return empty list
      *
@@ -36,6 +57,7 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
+<<<<<<< HEAD
             File file = new File(this.filePath);
 
             File parent = file.getParentFile();
@@ -52,7 +74,11 @@ public class Storage {
                 return tasks;
             }
 
+=======
+            File file = getOrCreateStorageFile();
+>>>>>>> refs/rewritten/branch-A-CodeQuality
             Scanner fileScanner = new Scanner(file);
+
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine().trim();
                 if (line.isEmpty()) {
@@ -99,6 +125,7 @@ public class Storage {
      */
     public void saveTasksToFile(ArrayList<Task> tasks) {
         try {
+<<<<<<< HEAD
             File file = new File(this.filePath);
 
             File parent = file.getParentFile();
@@ -114,14 +141,18 @@ public class Storage {
                 file.createNewFile();
             }
 
+=======
+            File file = getOrCreateStorageFile();
+>>>>>>> refs/rewritten/branch-A-CodeQuality
             FileWriter fw = new FileWriter(file, false); // overwrite the whole file
 
             for (Task t : tasks) {
-                fw.write(taskToLine(t) + System.lineSeparator());
+                fw.write(taskToLine(t));
+                fw.write(System.lineSeparator());
             }
 
             fw.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Error saving tasks: " + e.getMessage());
         }
     }
