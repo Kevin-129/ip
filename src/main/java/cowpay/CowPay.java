@@ -12,10 +12,21 @@ import cowpay.task.Task;
 public class CowPay {
 
     private static final String NAME = "CowPay";
+    private static final String STORAGE_FILE_PATH = "data/cowpay.txt";
 
-    private String filePath = "data/cowpay.txt";
-    private Storage storage = new Storage(filePath);
-    private TaskList tasks = new TaskList(storage.loadTasksFromFile());
+    private static final String COMMANDS = "todo, deadline, event, list, find, mark, unmark, delete, bye";
+    private static final String NO_TASKS_MESSAGE = "No tasks!! STOP SKIVING!!";
+
+    private final Storage storage;
+    private final TaskList tasks;
+
+    /**
+     * Constructor for CowPay
+     */
+    public CowPay() {
+        this.storage = new Storage(STORAGE_FILE_PATH);
+        this.tasks = new TaskList(storage.loadTasksFromFile());
+    }
 
     /**
      * Gets response from CowPay for a given user input
@@ -57,7 +68,7 @@ public class CowPay {
      * @return Welcome message
      */
     public String welcome() {
-        return "Hello! I'm CowPay. Wat u wan? \nCommands: todo, deadline, event, list, mark, unmark, delete";
+        return "Hello! I'm " + NAME + ". Wat u wan?\nCommands: " + COMMANDS;
     }
 
     /**
@@ -65,7 +76,7 @@ public class CowPay {
      */
     private String listTasks() {
         if (this.tasks.isEmpty()) {
-            return "No tasks!! STOP SKIVING!!";
+            return NO_TASKS_MESSAGE;
         }
 
         StringBuilder taskListSb = new StringBuilder("You need to do these: \n");
@@ -151,7 +162,6 @@ public class CowPay {
                 .append(")");
 
         } else {
-
             sb.append("[T] ")
                 .append(t.getStatusIcon())
                 .append(" ")
@@ -161,24 +171,31 @@ public class CowPay {
     }
 
     /**
+     * Saves tasks to storage
+     */
+    private void saveTasksToStorage() {
+        this.storage.saveTasksToFile(this.tasks.asArrayList());
+    }
+
+
+    /**
      * Marks a task as done
      *
      * @param details task number as string
      * @return response message
      */
-
     private String markTaskAsDone(String details) {
+
+        if (this.tasks.isEmpty()) {
+            return NO_TASKS_MESSAGE;
+        }
 
         Task t = null;
         try {
-            if (this.tasks.isEmpty()) {
-                return "No tasks!! STOP SKIVING!!";
-            }
-            int taskNum = Integer.parseInt(details) - 1;
-            t = this.tasks.get(taskNum);
+            int taskIndex = Parser.parseTaskIndex(details, this.tasks.size());
+            t = this.tasks.get(taskIndex);
         } catch (Exception e) {
-            return "Give a valid task number! 1 to " + this.tasks.size()
-                + "\nUse 'list' to see all tasks.";
+            return e.getMessage();
         }
 
         t.markAsDone();
@@ -190,6 +207,7 @@ public class CowPay {
             + t.getDescription();
     }
 
+
     /**
      * Marks a task as not done
      *
@@ -198,23 +216,22 @@ public class CowPay {
      */
     private String markTaskAsNotDone(String details) {
 
+        if (this.tasks.isEmpty()) {
+            return NO_TASKS_MESSAGE;
+        }
+
         Task t = null;
         try {
-            if (tasks.isEmpty()) {
-                return "No tasks!! STOP SKIVING!!";
-            }
-            int taskNum = Integer.parseInt(details) - 1;
-            t = this.tasks.get(taskNum);
-
+            int taskIndex = Parser.parseTaskIndex(details, this.tasks.size());
+            t = this.tasks.get(taskIndex);
         } catch (Exception e) {
-            return "Give a valid task number! 1 to " + this.tasks.size()
-                + "\nUse 'list' to see all tasks.";
+            return e.getMessage();
         }
 
         t.markAsNotDone();
         this.storage.saveTasksToFile(this.tasks.asArrayList());
 
-        return "Ok, this one marked as notdone: \n  "
+        return "Ok, this one marked as not done: \n  "
             + t.getStatusIcon()
             + " "
             + t.getDescription();
@@ -235,14 +252,15 @@ public class CowPay {
         }
 
         this.tasks.add(event);
-        this.storage.saveTasksToFile(this.tasks.asArrayList());
+        saveTasksToStorage();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ok, you need to: \n  ")
+        return new StringBuilder()
+            .append("Ok, you need to: \n  ")
             .append(taskToLineSb(event))
-            .append("\nYou have " + this.tasks.size() + " tasks.");
-
-        return sb.toString();
+            .append("\nYou have ")
+            .append(this.tasks.size())
+            .append(" tasks.")
+            .toString();
     }
 
     /**
@@ -260,14 +278,15 @@ public class CowPay {
         }
 
         this.tasks.add(d);
-        this.storage.saveTasksToFile(this.tasks.asArrayList());
+        saveTasksToStorage();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ok, you need to: \n  ")
+        return new StringBuilder()
+            .append("Ok, you need to: \n  ")
             .append(taskToLineSb(d))
-            .append("\nYou have " + this.tasks.size() + " tasks.");
-
-        return sb.toString();
+            .append("\nYou have ")
+            .append(this.tasks.size())
+            .append(" tasks.")
+            .toString();
     }
 
     /**
@@ -284,14 +303,15 @@ public class CowPay {
         String description = details;
         Task t = new Task(description);
         this.tasks.add(t);
-        this.storage.saveTasksToFile(this.tasks.asArrayList());
+        saveTasksToStorage();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ok, you need to: \n  ")
+        return new StringBuilder()
+            .append("Ok, you need to: \n  ")
             .append(taskToLineSb(t))
-            .append("\nYou have " + this.tasks.size() + " tasks.");
-
-        return sb.toString();
+            .append("\nYou have ")
+            .append(this.tasks.size())
+            .append(" tasks.")
+            .toString();
     }
 
     /**
@@ -301,29 +321,29 @@ public class CowPay {
      * @return response message
      */
     private String deleteTask(String details) {
-        Task t = null;
-        int taskNum = -1;
-
-        try {
-            if (this.tasks.isEmpty()) {
-                return "No tasks!! STOP SKIVING!!";
-            }
-            taskNum = Integer.parseInt(details) - 1;
-            t = this.tasks.get(taskNum);
-        } catch (Exception e) {
-            return "Give a valid task number! 1 to " + this.tasks.size()
-                + "\nUse 'list' to see all tasks.";
+        if (this.tasks.isEmpty()) {
+            return NO_TASKS_MESSAGE;
         }
 
-        this.tasks.remove(taskNum);
-        this.storage.saveTasksToFile(this.tasks.asArrayList());
+        Task t = null;
+        int taskIndex = -1;
+        try {
+            taskIndex = Parser.parseTaskIndex(details, this.tasks.size());
+            t = this.tasks.get(taskIndex);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ok, I remove this task: \n  ")
+        this.tasks.remove(taskIndex);
+        saveTasksToStorage();
+
+        return new StringBuilder()
+            .append("Ok, I remove this task: \n  ")
             .append(taskToLineSb(t))
-            .append("\nYou have " + this.tasks.size() + " tasks.");
-
-        return sb.toString();
+            .append("\nYou have ")
+            .append(this.tasks.size())
+            .append(" tasks.")
+            .toString();
     }
 
     /**
@@ -333,7 +353,7 @@ public class CowPay {
      * @return Invalid command message
      */
     private String invalidCommand(String command) {
-        return command + "??? Try a valid command! \nCommands: todo, deadline, event, list, mark, unmark, delete, bye";
+        return command + "??? Try a valid command!\nCommands: " + COMMANDS;
     }
 
     /**
