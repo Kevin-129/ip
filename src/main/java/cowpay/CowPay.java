@@ -1,10 +1,12 @@
 package cowpay;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import cowpay.task.Deadline;
 import cowpay.task.Event;
 import cowpay.task.Task;
+
 
 /**
  * The main class for the CowPay chatbot
@@ -14,7 +16,7 @@ public class CowPay {
     private static final String NAME = "CowPay";
     private static final String STORAGE_FILE_PATH = "data/cowpay.txt";
 
-    private static final String COMMANDS = "todo, deadline, event, list, find, mark, unmark, delete, bye";
+    private static final String COMMANDS = "todo, deadline, event, list, remind, find, mark, unmark, delete, bye";
     private static final String NO_TASKS_MESSAGE = "No tasks!! STOP SKIVING!!";
 
     private final Storage storage;
@@ -44,6 +46,8 @@ public class CowPay {
         switch (command) {
         case "list":
             return listTasks();
+        case "remind":
+            return reminder();
         case "find":
             return findTask(details);
         case "mark":
@@ -94,6 +98,68 @@ public class CowPay {
         }
 
         return taskListSb.toString();
+    }
+
+    /**
+     * @return Lists of all deadlines and events (String)
+     */
+    public String reminder() {
+
+        //Task list should not be null
+        assert this.tasks != null : "Task list should not be null!!";
+
+        if (this.tasks.isEmpty()) {
+            return NO_TASKS_MESSAGE;
+        }
+
+        StringBuilder taskListSb = new StringBuilder("REMEMBER TO DO THESE: \n");
+
+        LocalDateTime now = LocalDateTime.now();
+        int shownCount = 1;
+
+        try {
+            for (int i = 0; i < this.tasks.size(); i++) {
+                Task t = this.tasks.get(i);
+
+                if (t.isDone()) {
+                    continue;
+                }
+
+                if (t instanceof Deadline) {
+                    Deadline d = (Deadline) t;
+                    LocalDateTime by = Parser.parseDateTime(d.getByInputFormat());
+
+                    if (!by.isBefore(now)) { // by >= now
+                        taskListSb.append(shownCount)
+                            .append(". ")
+                            .append(taskToLineSb(t))
+                            .append("\n");
+                        shownCount++;
+                    }
+
+                } else if (t instanceof Event) {
+                    Event e = (Event) t;
+                    LocalDateTime from = Parser.parseDateTime(e.getFromInputFormat());
+
+                    if (!from.isBefore(now)) { // from >= now
+                        taskListSb.append(shownCount)
+                            .append(". ")
+                            .append(taskToLineSb(t))
+                            .append("\n");
+                        shownCount++;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+
+        if (shownCount == 1) {
+            return NO_TASKS_MESSAGE;
+        }
+
+        return taskListSb.toString();
+
     }
 
     /**

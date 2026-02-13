@@ -25,12 +25,19 @@ public class Event extends Task {
      */
     public Event(String description, String from, String to) {
         super(description);
-        this.from = LocalDateTime.parse(from, INPUT_FORMAT);
-        this.to = LocalDateTime.parse(to, INPUT_FORMAT);
 
+        try {
+            this.from = LocalDateTime.parse(from, INPUT_FORMAT);
+            this.to = LocalDateTime.parse(to, INPUT_FORMAT);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(
+                "Invalid date/time format. Use: d/M/yyyy HHmm (e.g. 13/2/2026 2359)"
+            );
+        }
         if (this.from.isAfter(this.to)) {
             throw new IllegalArgumentException("Invalid time range: /from is after /to");
         }
+
     }
     public String getFrom() {
         return this.from.format(OUTPUT_FORMAT);

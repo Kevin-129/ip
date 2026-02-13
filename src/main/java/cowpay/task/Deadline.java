@@ -21,7 +21,13 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) {
         super(description);
-        this.by = LocalDateTime.parse(by, INPUT_FORMAT);
+        try {
+            this.by = LocalDateTime.parse(by, INPUT_FORMAT);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(
+                "Invalid date/time format. Use: d/M/yyyy HHmm (e.g. 13/2/2026 2359)"
+            );
+        }
     }
 
     public String getBy() {

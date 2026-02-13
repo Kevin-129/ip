@@ -36,8 +36,9 @@ public class MainWindow extends AnchorPane {
     /** Injects the CowPay instance */
     public void setCowPay(CowPay c) {
         this.cowPay = c;
-        dialogContainer.getChildren().add(
-            DialogBox.getCowPayDialog(cowPay.welcome(), this.cowImage)
+        dialogContainer.getChildren().addAll(
+            DialogBox.getCowPayDialog(cowPay.welcome(), this.cowImage),
+            DialogBox.getCowPayDialog(cowPay.reminder(), this.cowImage)
         );
     }
 
