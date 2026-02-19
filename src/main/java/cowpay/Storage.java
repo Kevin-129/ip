@@ -48,6 +48,27 @@ public class Storage {
     }
 
     /**
+     * Creates the storage file if it does not exist
+     *
+     * @return File object representing the storage file
+     * @throws IOException if there is an error creating the file
+     */
+    private File getOrCreateStorageFile() throws IOException {
+        File file = new File(this.filePath);
+
+        File parent = file.getParentFile();
+        if (parent != null) {
+            parent.mkdirs();
+        }
+
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        return file;
+    }
+
+    /**
      * Loads tasks from ./data/cowpay.txt
      * If the folder or file does not exist, create them and return empty list
      *
