@@ -254,7 +254,6 @@ public class CowPay {
         this.storage.saveTasksToFile(this.tasks.asArrayList());
     }
 
-
     /**
      * Marks a task as done
      *
@@ -267,35 +266,22 @@ public class CowPay {
             return NO_TASKS_MESSAGE;
         }
 
-        Task t = null;
+        Task t;
         try {
-<<<<<<< HEAD
-            if (this.tasks.isEmpty()) {
-                return "No tasks!! STOP SKIVING!!";
-            }
-            int taskNum = Integer.parseInt(details) - 1;
-            t = this.tasks.get(taskNum);
-
-            // Task number should be within valid bounds
-            assert taskNum >= 0 && taskNum < this.tasks.size() : "Task number out of bounds!!";
-
-=======
             int taskIndex = Parser.parseTaskIndex(details, this.tasks.size());
             t = this.tasks.get(taskIndex);
->>>>>>> refs/rewritten/branch-A-CodeQuality
         } catch (Exception e) {
             return e.getMessage();
         }
 
         t.markAsDone();
-        this.storage.saveTasksToFile(this.tasks.asArrayList());
+        saveTasksToStorage();
 
         return "Ok, this one marked as done: \n  "
             + t.getStatusIcon()
             + " "
             + t.getDescription();
     }
-
 
     /**
      * Marks a task as not done
@@ -309,28 +295,16 @@ public class CowPay {
             return NO_TASKS_MESSAGE;
         }
 
-        Task t = null;
+        Task t;
         try {
-<<<<<<< HEAD
-            if (tasks.isEmpty()) {
-                return "No tasks!! STOP SKIVING!!";
-            }
-            int taskNum = Integer.parseInt(details) - 1;
-            t = this.tasks.get(taskNum);
-
-            // Task number should be within valid bounds
-            assert taskNum >= 0 && taskNum < this.tasks.size() : "Task number out of bounds!!";
-
-=======
             int taskIndex = Parser.parseTaskIndex(details, this.tasks.size());
             t = this.tasks.get(taskIndex);
->>>>>>> refs/rewritten/branch-A-CodeQuality
         } catch (Exception e) {
             return e.getMessage();
         }
 
         t.markAsNotDone();
-        this.storage.saveTasksToFile(this.tasks.asArrayList());
+        saveTasksToStorage();
 
         return "Ok, this one marked as not done: \n  "
             + t.getStatusIcon()
@@ -433,32 +407,13 @@ public class CowPay {
      * @return response message
      */
     private String deleteTask(String details) {
-<<<<<<< HEAD
 
-        Task t = null;
-        int taskNum = -1;
-
-        try {
-            if (this.tasks.isEmpty()) {
-                return "No tasks!! STOP SKIVING!!";
-            }
-            taskNum = Integer.parseInt(details) - 1;
-
-            // Task number should be within valid bounds
-            assert taskNum >= 0 && taskNum < this.tasks.size() : "Task number out of bounds!!";
-
-            t = this.tasks.get(taskNum);
-        } catch (Exception e) {
-            return "Give a valid task number! 1 to " + this.tasks.size()
-                + "\nUse 'list' to see all tasks.";
-=======
         if (this.tasks.isEmpty()) {
             return NO_TASKS_MESSAGE;
->>>>>>> refs/rewritten/branch-A-CodeQuality
         }
 
-        Task t = null;
-        int taskIndex = -1;
+        Task t;
+        int taskIndex;
         try {
             taskIndex = Parser.parseTaskIndex(details, this.tasks.size());
             t = this.tasks.get(taskIndex);

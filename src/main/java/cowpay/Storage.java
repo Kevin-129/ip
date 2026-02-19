@@ -36,7 +36,7 @@ public class Storage {
         File file = new File(this.filePath);
 
         File parent = file.getParentFile();
-        if (parent != null) {
+        if (parent != null && !parent.exists()) {
             parent.mkdirs();
         }
 
@@ -48,29 +48,8 @@ public class Storage {
     }
 
     /**
-     * Creates the storage file if it does not exist
-     *
-     * @return File object representing the storage file
-     * @throws IOException if there is an error creating the file
-     */
-    private File getOrCreateStorageFile() throws IOException {
-        File file = new File(this.filePath);
-
-        File parent = file.getParentFile();
-        if (parent != null) {
-            parent.mkdirs();
-        }
-
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-
-        return file;
-    }
-
-    /**
-     * Loads tasks from ./data/cowpay.txt
-     * If the folder or file does not exist, create them and return empty list
+     * Loads tasks from storage file.
+     * If the folder or file does not exist, create them and return empty list.
      *
      * @return ArrayList<Task> containing all tasks loaded from file
      */
@@ -78,26 +57,7 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
-<<<<<<< HEAD
-            File file = new File(this.filePath);
-
-            File parent = file.getParentFile();
-
-            //Parent directory should exist
-            assert parent != null && parent.exists() : "Parent directory for file does not exist!!";
-
-            if (parent != null) {
-                parent.mkdirs();
-            }
-
-            if (!file.exists()) {
-                file.createNewFile();
-                return tasks;
-            }
-
-=======
             File file = getOrCreateStorageFile();
->>>>>>> refs/rewritten/branch-A-CodeQuality
             Scanner fileScanner = new Scanner(file);
 
             while (fileScanner.hasNextLine()) {
@@ -107,28 +67,50 @@ public class Storage {
                 }
 
                 String[] parts = line.split("\\|");
+                // Expected:
+                // T|0|desc
+                // D|1|desc|by
+                // E|0|desc|from|to
+
+                if (parts.length < 3) {
+                    continue; // skip corrupted line
+                }
+
                 String type = parts[0];
                 int done = Integer.parseInt(parts[1]);
                 String desc = parts[2];
 
-                Task t = null;
+                Task t;
 
-                if (type.equals("T")) {
+                if ("T".equals(type)) {
                     t = new Task(desc);
-                } else if (type.equals("D")) {
+
+                } else if ("D".equals(type)) {
+                    if (parts.length < 4) {
+                        continue; // corrupted deadline line
+                    }
                     String by = parts[3];
                     t = new Deadline(desc, by);
-                } else {
+
+                } else if ("E".equals(type)) {
+                    if (parts.length < 5) {
+                        continue; // corrupted event line
+                    }
                     String from = parts[3];
                     String to = parts[4];
                     t = new Event(desc, from, to);
+
+                } else {
+                    continue; // unknown type
                 }
 
                 if (done == 1) {
                     t.markAsDone();
                 }
+
                 tasks.add(t);
             }
+
             fileScanner.close();
 
         } catch (Exception e) {
@@ -139,32 +121,14 @@ public class Storage {
     }
 
     /**
-     * Saves all tasks to ./data/cowpay.txt
-     * Overwrites existing file content so the file always matches the current task list
+     * Saves all tasks to storage file.
+     * Overwrites existing file content so the file always matches the current task list.
      *
      * @param tasks List of tasks to be saved
      */
     public void saveTasksToFile(ArrayList<Task> tasks) {
         try {
-<<<<<<< HEAD
-            File file = new File(this.filePath);
-
-            File parent = file.getParentFile();
-
-            //Parent directory should exist
-            assert parent != null && parent.exists() : "Parent directory for file does not exist!!";
-
-            if (parent != null) {
-                parent.mkdirs();
-            }
-
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-=======
             File file = getOrCreateStorageFile();
->>>>>>> refs/rewritten/branch-A-CodeQuality
             FileWriter fw = new FileWriter(file, false); // overwrite the whole file
 
             for (Task t : tasks) {
@@ -173,6 +137,7 @@ public class Storage {
             }
 
             fw.close();
+
         } catch (Exception e) {
             System.out.println("Error saving tasks: " + e.getMessage());
         }
@@ -189,7 +154,6 @@ public class Storage {
         // D|1|desc|by
         // E|0|desc|from|to
 
-        //Task should not be null
         assert t != null : "Task should not be null!!";
 
         int isDone = t.isDone() ? 1 : 0;
@@ -198,13 +162,14 @@ public class Storage {
             Deadline d = (Deadline) t;
             return "D|" + isDone + "|" + d.getDescription() + "|"
                 + d.getByInputFormat();
+
         } else if (t instanceof Event) {
             Event e = (Event) t;
             return "E|" + isDone + "|" + e.getDescription() + "|"
                 + e.getFromInputFormat() + "|" + e.getToInputFormat();
+
         } else {
             return "T|" + isDone + "|" + t.getDescription();
         }
     }
-
 }
