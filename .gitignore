@@ -5,8 +5,10 @@
 
 # Gradle build files
 /.gradle/
-/build/
+/build/**
 src/main/resources/docs/
+!/build/libs/
+!/build/libs/cowpay.jar
 
 # MacOS custom attributes files created by Finder
 .DS_Store

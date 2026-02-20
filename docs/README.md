@@ -7,13 +7,14 @@ CowPay is a simple task manager that helps students manage their tasks with a **
 ## Quick Start:
 
 1. **Ensure Java is installed**: You need **Java 17** or above on your computer.
-2. **Download CowPay**: Get the latest `.jar` file from [here](https://github.com/Kevin-129/ip).
-3. **Place the file**: Move the `cowpay.jar` into an empty folder (this folder will store your task data).
-4. **Launch the App**:
+2. **Ensure JavaFX is installed**: You need **JavaFX 17.0.18** installed to run the graphical interface.
+3. **Download CowPay**: Get the latest `.jar` file from [here](https://github.com/Kevin-129/ip).
+4. **Place the file**: Move the `cowpay.jar` into an empty folder (this folder will store your task data).
+5. **Launch the App**:
     * **Option A (The Easy Way):** Simply **double-click** the `cowpay.jar` file.
     * **Option B (The Fail-Proof Way):** If double-clicking doesn't work, open your terminal (Command Prompt/Terminal), `cd` into the folder, and run:  
         `java -jar cowpay.jar`
-5. **Start Typing**: Once the GUI appears, type a command (like `todo read book`) and press **Enter**!
+6. **Start Typing**: Once the GUI appears, type a command (like `todo read book`) and press **Enter**!
 
 ## Features: 
 
@@ -39,8 +40,8 @@ Once you have added tasks, use these commands to keep track:
 
 Here is a sample interaction showing how a typical student might use `CowPay`:
 1. `todo Read Chapter 1 of CS2103`
-2. `deadline Submit Project /by 2026-02-25`
-3. `event Career Fair /from 1400 /to 1700`
+2. `deadline Submit Project /by 25/2/2028 2359`
+3. `event Career Fair /from 25/2/2029 2359 /to 25/2/2030 2359`
 4. `list`
 5. `mark 1`
 6. `delete 3`
