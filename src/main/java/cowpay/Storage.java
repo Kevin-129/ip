@@ -66,48 +66,11 @@ public class Storage {
                     continue;
                 }
 
-                String[] parts = line.split("\\|");
-                // Expected:
-                // T|0|desc
-                // D|1|desc|by
-                // E|0|desc|from|to
+                Task t = lineToTask(line);
 
-                if (parts.length < 3) {
-                    continue; // skip corrupted line
+                if (t == null) {
+                    continue;
                 }
-
-                String type = parts[0];
-                int done = Integer.parseInt(parts[1]);
-                String desc = parts[2];
-
-                Task t;
-
-                if ("T".equals(type)) {
-                    t = new Task(desc);
-
-                } else if ("D".equals(type)) {
-                    if (parts.length < 4) {
-                        continue; // corrupted deadline line
-                    }
-                    String by = parts[3];
-                    t = new Deadline(desc, by);
-
-                } else if ("E".equals(type)) {
-                    if (parts.length < 5) {
-                        continue; // corrupted event line
-                    }
-                    String from = parts[3];
-                    String to = parts[4];
-                    t = new Event(desc, from, to);
-
-                } else {
-                    continue; // unknown type
-                }
-
-                if (done == 1) {
-                    t.markAsDone();
-                }
-
                 tasks.add(t);
             }
 
@@ -143,17 +106,17 @@ public class Storage {
         }
     }
 
+
+    // T|0|desc
+    // D|1|desc|by
+    // E|0|desc|from|to
     /**
-     * Format the task for saving to the file
+     * Convert the task/deadline/event to line representation for saving to the file
      *
      * @param t The task to convert
-     * @return Correct format of task for saving
+     * @return Line representation(String) for saving to the file
      */
     private static String taskToLine(Task t) {
-        // T|0|desc
-        // D|1|desc|by
-        // E|0|desc|from|to
-
         assert t != null : "Task should not be null!!";
 
         int isDone = t.isDone() ? 1 : 0;
@@ -171,5 +134,60 @@ public class Storage {
         } else {
             return "T|" + isDone + "|" + t.getDescription();
         }
+    }
+
+
+    // Expected:
+    // T|0|desc
+    // D|1|desc|by
+    // E|0|desc|from|to
+    /**
+     * Converts a line read from the file to a corresponding Task, Deadline, or Event object.
+     *
+     * @param line The line read from file
+     * @return Corresponding Task object or null if the line is invalid
+     */
+    private static Task lineToTask(String line) {
+        String[] parts = line.split("\\|");
+        Task t = null;
+
+        if (parts.length < 3) {
+            return t; // skip corrupted line
+        }
+
+        String type = parts[0];
+        int done = Integer.parseInt(parts[1]);
+        String desc = parts[2];
+
+
+        if ("T".equals(type)) {
+            t = new Task(desc);
+
+        } else if ("D".equals(type)) {
+
+            if (parts.length < 4) {
+                return t; // corrupted deadline line
+            }
+            String by = parts[3];
+            t = new Deadline(desc, by);
+
+        } else if ("E".equals(type)) {
+
+            if (parts.length < 5) {
+                return t; // corrupted event line
+            }
+            String from = parts[3];
+            String to = parts[4];
+            t = new Event(desc, from, to);
+
+        } else {
+            return t; // unknown type
+        }
+
+        if (done == 1) {
+            t.markAsDone();
+        }
+
+        return t;
     }
 }
