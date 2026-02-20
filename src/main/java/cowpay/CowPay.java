@@ -15,7 +15,7 @@ public class CowPay {
     private static final String NAME = "CowPay";
     private static final String STORAGE_FILE_PATH = "data/cowpay.txt";
 
-    private static final String COMMANDS = "todo, deadline, event, list, remind, find, mark, unmark, delete, bye";
+    private static final String COMMANDS = "todo, deadline, event, list, remind, find, mark, unmark, delete";
     private static final String NO_TASKS_MESSAGE = "No tasks!! STOP SKIVING!!";
 
     private final Storage storage;
