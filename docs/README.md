@@ -24,6 +24,7 @@ CowPay is a simple task manager that helps students manage their tasks with a **
 6. **Start Typing**: Once the GUI appears, type a command (e.g. `todo DON'T SHOWER`) and press **Enter**!
 
 ![CowPay GUI Startup Image](startup.png)
+
 This is the startup page you will see upon launching the app. You will be greeted immediately with a list of your existing reminders so you can see your upcoming tasks at a glance.
 
 ---
@@ -124,6 +125,7 @@ You can add three types of tasks. Each task is added to your list.
 1. **Multiple Instances:** If you open multiple CowPay windows at the same time, they will overwrite each other's data.
    * **Solution:** Only have 1 window of the application opened at any one time.
 
+
 2. **Past Dates:** The app accepts deadlines and events that are set way before the current time. 
    * These tasks will be recorded in your list, but using the `remind` command will only show tasks that have not yet passed and have not been completed.
    * **Example 1 :** `deadline SUBMIT HISTORY ESSAY /by 01/01/1800 2359`
@@ -162,9 +164,9 @@ public class CowPay {
 
 ## Next Steps:
 
-- [ ] Download the `cowpay.jar` file from [GitHub](https://github.com/Kevin-129/ip/releases/download/A-Release/cowpay.jar)
-- [ ] Try adding a task using the todo command
-- [ ] Set a deadline using the deadline command
-- [ ] Use the remind command to view all tasks
+1. [ ] Download the `cowpay.jar` file from [GitHub](https://github.com/Kevin-129/ip/releases/download/A-Release/cowpay.jar)
+2. [ ] Try adding a task using the todo command
+3. [ ] Set a deadline using the deadline command
+4. [ ] Use the remind command to view all tasks
 
 *Tip*: Use the `remind` command to quickly view all deadlines and events.
