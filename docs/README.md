@@ -23,7 +23,7 @@ CowPay is a simple task manager that helps students manage their tasks with a **
 
 6. **Start Typing**: Once the GUI appears, type a command (e.g. `todo DON'T SHOWER`) and press **Enter**!
 
-![CowPay GUI Startup Image](docs/startup.png)
+![CowPay GUI Startup Image](startup.png)
 This is the startup page you will see upon launching the app. You will be greeted immediately with a list of your existing reminders so you can see your upcoming tasks at a glance.
 
 ---
